@@ -22,6 +22,7 @@ final fiveKmRunEvent = Event(
     duration: "3h",
     punchLine1: "Marathon!",
     punchLine2: "The latest fad in foodology, get the inside scoup.",
+    galleryImages: [],
     categoryIds: [0, 1]);
 
 final cookingEvent = Event(
@@ -43,6 +44,7 @@ final musicConcert = Event(
     duration: "5h",
     punchLine1: "Music Lovers!",
     punchLine2: "The latest fad in foodology, get the inside scoup.",
+    galleryImages: ["assets/event_images/cooking_1.jpeg", "assets/event_images/cooking_2.jpeg", "assets/event_images/cooking_3.jpeg"],
     categoryIds: [0, 1]);
 
 final golfCompetition = Event(
@@ -53,6 +55,12 @@ final golfCompetition = Event(
     duration: "1d",
     punchLine1: "Golf!",
     punchLine2: "The latest fad in foodology, get the inside scoup.",
+    galleryImages: ["assets/event_images/cooking_1.jpeg", "assets/event_images/cooking_2.jpeg", "assets/event_images/cooking_3.jpeg"],
     categoryIds: [0, 3]);
 
-final events = [fiveKmRunEvent, cookingEvent, musicConcert, golfCompetition];
+final events = [
+  fiveKmRunEvent,
+  cookingEvent,
+  musicConcert,
+  golfCompetition,
+];

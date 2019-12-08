@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../model/event.dart';
 
-import 'event_detail_background.dart';
-import 'event_detail_content.dart';
+import '../../model/event.dart';
+import 'event_details_background.dart';
+import 'event_details_content.dart';
 
 class EventDetailsPage extends StatelessWidget {
 
@@ -19,8 +19,8 @@ class EventDetailsPage extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: <Widget>[
-            EventDetailBackground(),
-            EventDetailContent(),
+            EventDetailsBackground(),
+            EventDetailsContent(),
           ],
         ),
       ),

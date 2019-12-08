@@ -34,6 +34,7 @@ final golfCategory = Category(
 );
 
 final birthdayCategory = Category(
+  categoryId: 4,
   name: "Birthday",
   icon: Icons.cake,
 );

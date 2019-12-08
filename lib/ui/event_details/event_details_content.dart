@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:localeventsapp/model/guest.dart';
-import 'package:localeventsapp/styleguide.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/event.dart';
+import '../../model/guest.dart';
+import '../../styleguide.dart';
 
-class EventDetailContent extends StatelessWidget {
+class EventDetailsContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final event = Provider.of<Event>(context);
@@ -29,10 +29,17 @@ class EventDetailContent extends StatelessWidget {
             height: 10,
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.2),
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.24),
             child: FittedBox(
               child: Row(
                 children: <Widget>[
+                  Text(
+                    "-",
+                    style: eventLocationTextStyle.copyWith(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                   Icon(
                     Icons.location_on,
                     color: Colors.white,
@@ -43,10 +50,7 @@ class EventDetailContent extends StatelessWidget {
                   ),
                   Text(
                     event.location,
-                    style: eventLocationTextStyle.copyWith(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: eventLocationTextStyle.copyWith(color: Colors.white, fontWeight: FontWeight.w700),
                   ),
                 ],
               ),
@@ -57,7 +61,10 @@ class EventDetailContent extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 16.0),
-            child: Text("GUESTS", style: guestTextStyle,),
+            child: Text(
+              "GUESTS",
+              style: guestTextStyle,
+            ),
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -65,13 +72,13 @@ class EventDetailContent extends StatelessWidget {
               children: <Widget>[
                 for (final guest in guests)
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: ClipOval(
                       child: Image.asset(
                         guest.imagePath,
-                        fit: BoxFit.cover,
                         width: 90,
                         height: 90,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
@@ -83,9 +90,9 @@ class EventDetailContent extends StatelessWidget {
             child: RichText(
               text: TextSpan(
                 children: [
-                  TextSpan(text: event.punchLine1 +" ", style: punchLine1TextStyle),
-                  TextSpan(text: event.punchLine2, style: punchLine2TextStyle),
-                ],
+                  TextSpan(text: event.punchLine1, style: punchLine1TextStyle,),
+                  TextSpan(text: event.punchLine2, style: punchLine2TextStyle,),
+                ]
               ),
             ),
           ),
@@ -93,21 +100,30 @@ class EventDetailContent extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Text(event.description, style: eventLocationTextStyle,),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, top: 16, bottom: 16,),
-            child: Text("GALLERY", style: guestTextStyle,),
+          if (event.galleryImages.isNotEmpty) Padding(
+            padding: const EdgeInsets.only(left: 16.0, top: 16, bottom: 16),
+            child: Text(
+              "GALLERY",
+              style: guestTextStyle,
+            ),
           ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: <Widget>[
-                for (final galleryImage in event.galleryImages) Container(
-                  margin: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    child: Image.asset(galleryImage, height: 180, width: 180, fit: BoxFit.cover,),
+                for (final galleryImagePath in event.galleryImages)
+                  Container(
+                    margin: const EdgeInsets.only(left: 16, right: 16, bottom: 32),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      child: Image.asset(
+                        galleryImagePath,
+                        width: 180,
+                        height: 180,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
-                ),
               ],
             ),
           ),
